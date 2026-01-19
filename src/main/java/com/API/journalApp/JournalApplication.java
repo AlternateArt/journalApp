@@ -19,6 +19,6 @@ public class JournalApplication {
 
     @Bean
     public PlatformTransactionManager manage(MongoDatabaseFactory factory){
-        return  new MongoTransactionManager(factory);         //yeh MTM implements PTM and it is a bean
+        return  new MongoTransactionManager(factory);        
     }
 }
