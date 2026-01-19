@@ -45,7 +45,7 @@ public class Controller2 {
 
     @GetMapping("id/{myId}")  
     public  ResponseEntity<JournalEntry> getJournalIdById(@PathVariable ObjectId myId ){
-       Optional <JournalEntry> byId = journalEntryService.findById(myId);//optional hai isliye
+       Optional <JournalEntry> byId = journalEntryService.findById(myId);
         if (byId.isPresent()){
             return new ResponseEntity<>(byId.get(), HttpStatus.OK);
         }
