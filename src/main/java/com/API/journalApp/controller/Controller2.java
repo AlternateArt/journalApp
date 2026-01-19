@@ -23,7 +23,7 @@ public class Controller2 {
     @Autowired
     private UserService userService;
 
-    @GetMapping ("{userName}")    //users ka same name hoga varna error
+    @GetMapping ("{userName}")    
     public ResponseEntity<List<JournalEntry>> getAllJournalEntriesOfUser(@PathVariable String userName){
         Users user = userService.findByUserName(userName);
         List<JournalEntry> getAll = user.getJournalEntries();
@@ -33,7 +33,7 @@ public class Controller2 {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping ("{userName}")  //registering entries in journal
+    @PostMapping ("{userName}")  
     public ResponseEntity<?> createEntry(@RequestBody JournalEntry firstEntry, @PathVariable String userName){
         try {
             journalEntryService.saveEntry(firstEntry, userName);
@@ -43,7 +43,7 @@ public class Controller2 {
         }
     }
 
-    @GetMapping("id/{myId}")  //get a single entry from the journal
+    @GetMapping("id/{myId}")  
     public  ResponseEntity<JournalEntry> getJournalIdById(@PathVariable ObjectId myId ){
        Optional <JournalEntry> byId = journalEntryService.findById(myId);//optional hai isliye
         if (byId.isPresent()){
@@ -52,13 +52,13 @@ public class Controller2 {
          return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @DeleteMapping("id/{userName}/{myId}")  //used for deletion of entries for here
+    @DeleteMapping("id/{userName}/{myId}")  
     public  ResponseEntity<?> deleteJournalById(@PathVariable ObjectId myId, @PathVariable String userName ){
          journalEntryService.deleteById(myId, userName);
          return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping ("id/{userName}/{id}")  //for updating the data in the entries
+    @PutMapping ("id/{userName}/{id}") 
     public  ResponseEntity<?> updateEntriesById(@PathVariable ObjectId id,
                                                 @RequestBody JournalEntry newEntry,
                                                 @PathVariable String userName){
