@@ -14,7 +14,7 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository; //injecting repository in this class
+    private UserRepository userRepository; 
 
 
     public void saveEntry(Users user){
