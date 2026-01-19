@@ -16,7 +16,7 @@ import java.util.Optional;
 public class JournalEntryService {
 
     @Autowired
-    private JournalEntryRepository journalEntryRepository; //injecting repository in this class
+    private JournalEntryRepository journalEntryRepository; 
 
     @Autowired
     private UserService userService;
@@ -28,14 +28,14 @@ public class JournalEntryService {
             journalEntry.setDate(LocalDateTime.now());
             JournalEntry saved = journalEntryRepository.save(journalEntry);
 
-            user.getJournalEntries().add(saved);   //mapped   every entry with their username
-            userService.saveEntry(user);            //and saved
+            user.getJournalEntries().add(saved);  
+            userService.saveEntry(user);            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void saveEntry(JournalEntry oldEntry) {  //yeh put ke liye kyunki usmein username chhaiye hi nhi
+    public void saveEntry(JournalEntry oldEntry) {  
         journalEntryRepository.save(oldEntry);
     }
 
@@ -49,8 +49,8 @@ public class JournalEntryService {
 
     public void deleteById(ObjectId id, String userName){
         Users user = userService.findByUserName(userName);
-        user.getJournalEntries().removeIf(x-> x.getId().equals(id));  //turant ke turant deleted entry ka reference hat jaaega
-        userService.saveEntry(user);                            //khair next save pe spring hud hi hata deta hai agar manually delete na hua ho
+        user.getJournalEntries().removeIf(x-> x.getId().equals(id));  
+        userService.saveEntry(user);                           
         journalEntryRepository.deleteById(id);
     }
 }
