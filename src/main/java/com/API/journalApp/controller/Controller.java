@@ -19,23 +19,23 @@ public class Controller {
         return new ArrayList<>(journalEntries.values());
     }
 
-//    @PostMapping   //registering entries in journal
-//    public boolean createEntry(@RequestBody JournalEntry firstEntry){
-//        journalEntries.put(firstEntry.getId(), firstEntry);
-//        return  true;
-//    }
+    @PostMapping   
+    public boolean createEntry(@RequestBody JournalEntry firstEntry){
+        journalEntries.put(firstEntry.getId(), firstEntry);
+        return  true;
+    }
 
-    @GetMapping("id/{myId}")  //get a single entry from the journal
+    @GetMapping("id/{myId}")  
     public  JournalEntry getJournalIdById(@PathVariable Long myId ){
         return journalEntries.get(myId);
     }
 
-    @DeleteMapping("id/{myId}")  //used for deletion of entries for here
+    @DeleteMapping("id/{myId}")  
     public  JournalEntry deleteJournalById(@PathVariable Long myId ){
         return journalEntries.remove(myId);
     }
 
-    @PutMapping ("/id/{id}")  //for updating the data in the entries
+    @PutMapping ("/id/{id}")  
     public  JournalEntry updateEntriesById(@PathVariable Long id, @RequestBody JournalEntry firstEntry){
         return  journalEntries.put(id, firstEntry);
     }
